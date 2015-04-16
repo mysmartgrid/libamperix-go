@@ -10,10 +10,24 @@ import (
 	"crypto/tls"
 	"time"
 "math"
-//	"strconv"
+	"strconv"
 	)
 
 	import "encoding/json"
+
+type nanfloat float64
+
+func (p *nanfloat) UnmarshalJSON(data []byte) error {
+  if ( string(data) == "\"-nan\"" ) {
+    *p = nanfloat(math.NaN())
+		return nil
+	} 
+
+	f, err := strconv.ParseFloat(string(data), 64)
+	*p = nanfloat(f)
+	return err
+}
+
 
 type Measurement struct {
 	Time  time.Time
@@ -21,22 +35,19 @@ type Measurement struct {
 }
 
 func (p *Measurement) UnmarshalJSON(data []byte) error {
-	var arr [2]float64
+	var arr [2]nanfloat
 			
 	//fmt.Printf("R: '%s'\n\n",  data)
 	if err := json.Unmarshal(data, &arr); err != nil {
 		//fmt.Printf("Unmarshal - error %s\n", err)
 		//fmt.Printf("\t %f\n", arr[0])
-		ms := int64(arr[0])
-		p.Time  = time.Unix(ms, 0)
-		p.Value=math.NaN()
-		return nil
+		return err
 	}
 
 	ms := int64(arr[0])
 	//p.Time = time.Unix(ms/1000, (ms%1000)*1e6)
 	p.Time  = time.Unix(ms, 0)
-  p.Value=arr[1]
+	p.Value = float64(arr[1])
 	return nil
 }
 

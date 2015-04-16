@@ -55,7 +55,7 @@ func main() {
 		
 	ws := amperix.NewWebService(config)
   ret := ws.GetValues()
-  if(config.GetDebug()) {	fmt.Printf("N: url: '%s'\n", ret) }
+  if(config.GetDebug()) {	fmt.Printf("N: url: '%+v'\n", ret) }
 	
 }
 
