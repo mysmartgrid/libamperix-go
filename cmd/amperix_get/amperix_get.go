@@ -8,7 +8,7 @@ import (
 	"os"
 	)
 import(
-	"../../amperix"
+	"github.com/libamperix-go/amperix"
 )
 
 type cmdlineArgs struct {
