@@ -1,17 +1,17 @@
 package amperix
 
 type Config struct {
-		 BaseUrl			 string
-		 SensorId			 string
-		 Token				 string
-		 Unit					 string
-		 Interval			 string
-		 FormatterType string
-		 FilterType		 string
-		 OutFilename	 string
-		 Version			 string
-		 Debug				 bool
-		 Verbose			 bool
+	SensorId	 string
+	Token		 string
+	Key 		 string
+	Unit		 string
+	Interval	 string
+	FormatterType    string
+	FilterType	 string
+	OutFilename	 string
+	Version		 string
+	Debug		 bool
+	Verbose		 bool
 }
 
 func NewConfig() (*Config) {
@@ -23,16 +23,12 @@ func NewConfig() (*Config) {
 	return cfg
 }
 
-func (c* Config) GetBaseurl() string {
-		 return c.BaseUrl
-}
-
 func (c*Config) GetSensorId() string {
-		 return c.SensorId
+	return c.SensorId
 }
 
 func (c* Config) GetToken() string {
-		 return c.Token
+	return c.Token
 }
 
 func (c* Config) GetUnit() string {
@@ -56,16 +52,15 @@ func (c* Config) GetVerbose() bool {
 }
 
 
-func (c* Config) SetBaseUrl(BaseUrl string) {
-		 c.BaseUrl=BaseUrl
-}
-
 func (c*Config) SetSensorId(SensorId string) {
-	 c.SensorId=SensorId
+	c.SensorId=SensorId
 }
 
 func (c* Config) SetToken(Token string) {
 	c.Token=Token
+}
+func (c* Config) SetKey(Key string) {
+	c.Key=Key
 }
 
 func (c* Config) SetUnit(Unit string) {
@@ -87,3 +82,10 @@ func (c* Config) SetDebug(Debug bool) {
 func (c* Config) SetVerbose(Verbose bool) {
 	c.Verbose=Verbose
 }
+/*
+ * Local variables:
+ *  tab-width: 2
+ *  c-indent-level: 2
+ *  c-basic-offset: 2
+ * End:
+ */
